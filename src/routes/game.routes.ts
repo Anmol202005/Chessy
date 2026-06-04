@@ -462,33 +462,6 @@ router.get('/performance', authenticateToken, getPerformanceByFormat);
 
 /**
  * @swagger
- * /api/game/{gameId}:
- *   get:
- *     tags:
- *       - Games
- *     summary: Get game state
- *     description: Retrieve current state of a specific game
- *     parameters:
- *       - in: path
- *         name: gameId
- *         required: true
- *         schema:
- *           type: string
- *         description: The game ID
- *     responses:
- *       200:
- *         description: Current game state
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/GameState'
- *       404:
- *         description: Game not found
- */
-router.get('/:gameId', getGame);
-
-/**
- * @swagger
  * /api/game/{gameId}/move:
  *   post:
  *     tags:
@@ -619,5 +592,32 @@ router.post('/:gameId/resign', optionalAuth, resignGame);
 
 // Weekly insights (ELO trend + breakdown last 7 days)
 router.get('/insights/weekly', authenticateToken, getWeeklyInsights);
+
+/**
+ * @swagger
+ * /api/game/{gameId}:
+ *   get:
+ *     tags:
+ *       - Games
+ *     summary: Get game state
+ *     description: Retrieve current state of a specific game
+ *     parameters:
+ *       - in: path
+ *         name: gameId
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The game ID
+ *     responses:
+ *       200:
+ *         description: Current game state
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/GameState'
+ *       404:
+ *         description: Game not found
+ */
+router.get('/:gameId', getGame);
 
 export default router;
